@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>لميرنا فقط ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>ميرنا ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
         }
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #2b1a1a 0%, #4a2a2a 50%, #2b1a1a 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Cairo', 'Tajawal', sans-serif;
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 10px;
+            justify-content: center;
+            padding: 16px;
             position: relative;
             overflow-x: hidden;
         }
-        /* النجوم المتحركة */
-        .stars, .stars2, .stars3 {
+        /* خلفية متحركة ناعمة */
+        .bg-hearts {
             position: fixed;
             top: 0;
             left: 0;
@@ -32,330 +32,488 @@
             pointer-events: none;
             z-index: 0;
         }
-        .stars {
-            background: transparent url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Ccircle cx="10" cy="10" r="1" fill="white" opacity="0.8"/%3E%3Ccircle cx="30" cy="40" r="1.5" fill="white" opacity="0.6"/%3E%3Ccircle cx="70" cy="20" r="1" fill="white" opacity="0.9"/%3E%3Ccircle cx="90" cy="80" r="2" fill="white" opacity="0.5"/%3E%3Ccircle cx="50" cy="90" r="1" fill="white" opacity="0.7"/%3E%3Ccircle cx="20" cy="70" r="1.2" fill="white" opacity="0.8"/%3E%3C/svg%3E') repeat;
-            animation: moveStars 60s linear infinite;
+        .bg-hearts span {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 24px;
+            animation: floatHeart 8s infinite;
         }
-        .stars2 {
-            background: transparent url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"%3E%3Ccircle cx="15" cy="15" r="1.2" fill="%23ffd7d7" opacity="0.7"/%3E%3Ccircle cx="120" cy="45" r="1.8" fill="%23ffd7d7" opacity="0.9"/%3E%3Ccircle cx="80" cy="110" r="1" fill="%23ffd7d7" opacity="0.6"/%3E%3Ccircle cx="40" cy="130" r="1.5" fill="%23ffd7d7" opacity="0.8"/%3E%3C/svg%3E') repeat;
-            animation: moveStars 90s linear infinite;
-            opacity: 0.6;
+        @keyframes floatHeart {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
-        .stars3 {
-            background: transparent url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"%3E%3Ccircle cx="180" cy="30" r="2" fill="%23ffe5e5" opacity="0.5"/%3E%3Ccircle cx="10" cy="180" r="1.5" fill="%23ffe5e5" opacity="0.7"/%3E%3Ccircle cx="100" cy="100" r="2.5" fill="%23ffe5e5" opacity="0.8"/%3E%3C/svg%3E') repeat;
-            animation: moveStars 120s linear infinite;
-            opacity: 0.4;
-        }
-        @keyframes moveStars {
-            from { transform: translateY(0) translateX(0); }
-            to { transform: translateY(-200px) translateX(100px); }
-        }
+        /* توزيع القلوب */
+        .bg-hearts span:nth-child(1) { left: 10%; animation-duration: 7s; }
+        .bg-hearts span:nth-child(2) { left: 30%; animation-duration: 9s; animation-delay: 2s; }
+        .bg-hearts span:nth-child(3) { left: 50%; animation-duration: 8s; animation-delay: 1s; }
+        .bg-hearts span:nth-child(4) { left: 70%; animation-duration: 10s; animation-delay: 3s; }
+        .bg-hearts span:nth-child(5) { left: 90%; animation-duration: 6s; animation-delay: 0.5s; }
 
         .container {
             width: 100%;
             max-width: 400px;
-            background: rgba(30, 15, 15, 0.7);
-            backdrop-filter: blur(15px);
-            border-radius: 50px 50px 30px 30px;
-            box-shadow: 0 30px 50px rgba(0,0,0,0.6), 0 0 0 2px #b34141 inset, 0 0 15px #ff8a8a;
-            padding: 25px 20px;
-            text-align: center;
-            border: 1px solid #ffb6b6;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.5) inset;
+            padding: 32px 24px;
             position: relative;
             z-index: 10;
-            animation: glowPulse 3s infinite;
+            animation: containerAppear 0.8s ease;
         }
-        @keyframes glowPulse {
-            0% { box-shadow: 0 30px 50px rgba(0,0,0,0.6), 0 0 0 2px #b34141 inset, 0 0 15px #ff8a8a; }
-            50% { box-shadow: 0 30px 60px #b3414166, 0 0 0 3px #ff6f6f inset, 0 0 30px #ff4d4d; }
-            100% { box-shadow: 0 30px 50px rgba(0,0,0,0.6), 0 0 0 2px #b34141 inset, 0 0 15px #ff8a8a; }
-        }
-
-        .heartBig {
-            font-size: 5rem;
-            margin: 0 0 10px;
-            animation: heartbeat 1.2s infinite, rotateHeart 4s infinite;
-            display: inline-block;
-            filter: drop-shadow(0 0 15px #ff5e5e);
-        }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            25% { transform: scale(1.2); }
-            35% { transform: scale(1.1); }
-            45% { transform: scale(1.3); }
-            55% { transform: scale(1); }
-            100% { transform: scale(1); }
-        }
-        @keyframes rotateHeart {
-            0% { transform: rotate(0deg); }
-            10% { transform: rotate(5deg); }
-            20% { transform: rotate(-5deg); }
-            30% { transform: rotate(3deg); }
-            40% { transform: rotate(0deg); }
+        @keyframes containerAppear {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        h1 {
-            color: #ffd7d7;
-            font-weight: 900;
-            font-size: 2.5rem;
-            text-shadow: 0 0 10px #ff3b3b, 0 0 20px #ff6f6f;
-            margin-bottom: 10px;
-            animation: flicker 3s infinite;
-        }
-        @keyframes flicker {
-            0% { opacity: 1; text-shadow: 0 0 10px #ff3b3b; }
-            25% { opacity: 0.9; text-shadow: 0 0 20px #ff9f9f, 0 0 30px #ff4d4d; }
-            50% { opacity: 1; text-shadow: 0 0 15px #ff6f6f; }
-            75% { opacity: 0.95; text-shadow: 0 0 25px #ff3b3b, 0 0 40px #ffb3b3; }
-            100% { opacity: 1; text-shadow: 0 0 10px #ff3b3b; }
-        }
-
-        input {
-            width: 100%;
-            padding: 18px 20px;
-            border: 2px solid #b34141;
-            border-radius: 60px;
-            background: rgba(0,0,0,0.5);
-            color: white;
-            font-size: 1.3rem;
+        /* شاشة القفل */
+        .lock-screen {
             text-align: center;
-            margin: 15px 0;
-            outline: none;
-            box-shadow: 0 0 20px #ff3b3b66;
-            transition: 0.3s;
+            animation: fadeIn 0.5s ease;
         }
-        input:focus {
-            border-color: #ff8a8a;
-            box-shadow: 0 0 35px #ff5e5e;
+        .lock-screen .heart-icon {
+            font-size: 5rem;
+            margin-bottom: 16px;
+            animation: heartWave 2s infinite;
+            display: inline-block;
+            filter: drop-shadow(0 10px 15px rgba(102, 126, 234, 0.4));
         }
-
-        button {
-            background: linear-gradient(45deg, #8b0000, #b34141, #d45a5a);
-            border: none;
-            padding: 16px;
-            width: 100%;
-            border-radius: 60px;
-            color: white;
-            font-size: 1.5rem;
+        @keyframes heartWave {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(5deg); }
+            50% { transform: scale(1) rotate(-5deg); }
+            75% { transform: scale(1.05) rotate(3deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        .lock-screen h1 {
+            font-size: 3.2rem;
             font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 10px rgba(102, 126, 234, 0.2);
+        }
+        .lock-screen p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        .password-field {
+            width: 100%;
+            padding: 18px 22px;
+            background: #f8f9ff;
+            border: 2px solid #e0e4ff;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            text-align: center;
+            color: #333;
+            font-family: 'Cairo', sans-serif;
+            outline: none;
+            margin-bottom: 18px;
+            transition: all 0.3s;
+        }
+        .password-field:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: scale(1.02);
+        }
+        .unlock-btn {
+            width: 100%;
+            padding: 18px 22px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 10px 20px #2b0a0a, 0 0 30px #ff6f6f;
-            transition: 0.2s;
-            border: 1px solid #ffc3c3;
-            margin-bottom: 15px;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        button:active {
-            transform: scale(0.95);
-            box-shadow: 0 5px 10px black;
-        }
-
-        .main-content {
-            animation: slideIn 0.8s ease;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(50px) scale(0.8); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        .unlock-btn:active {
+            transform: scale(0.96);
+            box-shadow: 0 5px 10px rgba(102, 126, 234, 0.3);
         }
 
+        /* المحتوى الرئيسي */
+        .main-screen {
+            animation: slideUp 0.6s ease;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .hidden {
             display: none !important;
         }
 
+        /* رأس المحتوى */
+        .main-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .main-header .big-heart {
+            font-size: 4rem;
+            animation: gentleBeat 2s infinite;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        @keyframes gentleBeat {
+            0% { transform: scale(1); }
+            10% { transform: scale(1.15); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.08); }
+            40% { transform: scale(1); }
+        }
+        .main-header h2 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        .main-header h2::after {
+            content: '✨';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            animation: sparkle 1.5s infinite;
+        }
+        .main-header h2::before {
+            content: '✨';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            animation: sparkle 1.5s infinite 0.5s;
+        }
+        @keyframes sparkle {
+            0% { opacity: 0.2; transform: translateY(-50%) scale(0.8); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+            100% { opacity: 0.2; transform: translateY(-50%) scale(0.8); }
+        }
+
+        /* رسالة الحب (من عندي) */
+        .love-message {
+            background: linear-gradient(135deg, #f5f0ff 0%, #f0e6ff 100%);
+            border-radius: 30px;
+            padding: 28px 22px;
+            margin: 24px 0;
+            border: 2px solid white;
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.15);
+            position: relative;
+            overflow: hidden;
+            animation: messageGlow 3s infinite;
+        }
+        .love-message::before {
+            content: '❤️';
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            font-size: 3rem;
+            opacity: 0.1;
+            animation: rotate 10s infinite linear;
+        }
+        .love-message::after {
+            content: '❤️';
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: rotate 8s infinite linear reverse;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes messageGlow {
+            0% { box-shadow: 0 15px 30px rgba(102, 126, 234, 0.15); }
+            50% { box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3); }
+            100% { box-shadow: 0 15px 30px rgba(102, 126, 234, 0.15); }
+        }
+        .love-message p {
+            color: #333;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: center;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+        .love-message .signature {
+            display: block;
+            margin-top: 20px;
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* العداد الأنيق */
+        .timer-section {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 40px;
+            padding: 24px 16px;
+            margin: 24px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 0 0 2px rgba(102, 126, 234, 0.2) inset;
+        }
+        .timer-title {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
         .timer-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px;
-            background: rgba(70, 30, 30, 0.7);
-            border-radius: 50px;
-            padding: 20px 10px;
-            margin: 20px 0;
-            border: 2px solid #b34141;
-            box-shadow: 0 0 30px #ff5e5e inset;
+            gap: 12px;
+            direction: ltr;
         }
-        .unit {
-            background: #2f1515;
-            border-radius: 30px;
-            padding: 12px 5px;
-            min-width: 65px;
-            border: 1px solid #ffa0a0;
-            box-shadow: 0 0 15px #ff9999;
+        .time-unit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            padding: 16px 8px;
+            min-width: 70px;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            animation: unitPop 0.5s ease;
+            transition: all 0.2s;
         }
-        .unit .value {
-            font-size: 1.9rem;
-            font-weight: 900;
-            color: #ffd7d7;
-            text-shadow: 0 0 10px red;
+        .time-unit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(102, 126, 234, 0.4);
         }
-        .unit .label {
-            font-size: 0.75rem;
-            color: #ffbaba;
+        @keyframes unitPop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
-
-        .special-message {
-            background: rgba(0,0,0,0.5);
-            border-radius: 40px;
-            padding: 25px 18px;
-            margin: 20px 0;
-            border: 2px dashed #ff6f6f;
-            box-shadow: 0 0 40px #ff3b3b;
-            animation: borderFlash 2s infinite;
-            color: #ffe2e2;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            text-align: center;
+        .time-unit .number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
-        @keyframes borderFlash {
-            0% { border-color: #ff6f6f; box-shadow: 0 0 30px #ff3b3b; }
-            50% { border-color: #ffd7d7; box-shadow: 0 0 60px #ff8a8a; }
-            100% { border-color: #ff6f6f; box-shadow: 0 0 30px #ff3b3b; }
+        .time-unit .label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
         }
 
-        .back-btn {
-            background: transparent;
-            border: 2px solid #ff9f9f;
-            color: #ffcbcb;
-            font-size: 1.2rem;
-            padding: 12px;
-            margin-top: 15px;
+        /* زر الرجوع */
+        .back-button {
             width: 100%;
-            border-radius: 40px;
-            box-shadow: 0 0 15px #ff6f6f;
+            padding: 16px;
+            background: transparent;
+            border: 2px solid #667eea;
+            border-radius: 50px;
+            color: #667eea;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: all 0.2s;
         }
-        .back-btn:active {
-            background: #8b000055;
+        .back-button:active {
+            background: #667eea;
+            color: white;
+            transform: scale(0.97);
         }
 
-        .footer {
-            color: #ffb3b3;
-            margin-top: 10px;
+        /* فوتر */
+        .footer-note {
+            text-align: center;
+            color: #999;
             font-size: 0.9rem;
-            animation: fadeFooter 3s infinite;
-        }
-        @keyframes fadeFooter {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; text-shadow: 0 0 8px white; }
-            100% { opacity: 0.5; }
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <!-- طبقات النجوم -->
-    <div class="stars"></div>
-    <div class="stars2"></div>
-    <div class="stars3"></div>
+    <!-- خلفية قلوب متحركة -->
+    <div class="bg-hearts">
+        <span>❤️</span>
+        <span>❤️</span>
+        <span>❤️</span>
+        <span>❤️</span>
+        <span>❤️</span>
+    </div>
 
-    <div class="container" id="container">
+    <div class="container">
         <!-- شاشة القفل -->
-        <div id="passwordScreen">
-            <div class="heartBig">❤️</div>
+        <div id="lockScreen" class="lock-screen">
+            <div class="heart-icon">❤️</div>
             <h1>ميرنا</h1>
-            <p style="color: #ffd2d2;">حبيبة القلب</p>
-            <input type="text" id="passwordInput" placeholder="أدخل السر" autocomplete="off" />
-            <button id="unlockBtn">افتح القفل</button>
-            <div class="footer">⭐ للغالية فقط ⭐</div>
+            <p>اكتبي السر وادخلي</p>
+            <input type="text" id="passwordInput" class="password-field" placeholder="كلمة المرور" autocomplete="off">
+            <button class="unlock-btn" id="unlockBtn">ادخلي</button>
+            <div class="footer-note" style="margin-top: 30px;">⭐ ليها بس</div>
         </div>
 
-        <!-- المحتوى السري -->
-        <div id="mainContent" class="main-content hidden">
-            <div class="heartBig">❤️</div>
-            <h1 style="font-size: 2rem;">ميرنا ❤️</h1>
-            
-            <!-- رسالة من القلب -->
-            <div class="special-message" id="loveMessage">
-                <!-- هتتكتب من جافاسكربت -->
+        <!-- المحتوى الرئيسي -->
+        <div id="mainScreen" class="main-screen hidden">
+            <div class="main-header">
+                <div class="big-heart">❤️</div>
+                <h2>ميرنا</h2>
             </div>
 
-            <!-- العداد الشامل -->
-            <div class="timer-grid" id="timerDisplay"></div>
+            <!-- رسالة الحب (من عندي) -->
+            <div class="love-message" id="loveMessage">
+                <!-- هتتحط من الجافاسكربت -->
+            </div>
+
+            <!-- عداد الوقت -->
+            <div class="timer-section">
+                <div class="timer-title">منذ أن بدأ الحب</div>
+                <div class="timer-grid" id="timerGrid">
+                    <!-- هيتحط من الجافاسكربت -->
+                </div>
+            </div>
 
             <!-- زر الرجوع -->
-            <button class="back-btn" id="backBtn">🔙 رجوع</button>
-            <div class="footer">كل ثانية معك أجمل من اللي قبلها</div>
+            <button class="back-button" id="backBtn">🔙 رجوع</button>
+            <div class="footer-note">كل ثانية معاكي أجمل</div>
         </div>
     </div>
 
     <script>
         (function() {
-            // تاريخ البداية (غيره حسب ما بدأت)
-            const START_DATE = new Date('2026-03-05T00:00:00');
-            const CORRECT_PASSWORD = "ميرنا";
+            // ------------------ الإعدادات ------------------
+            const START_DATE = new Date('2026-03-05T00:00:00'); // غير التاريخ
+            const PASSWORD = "ميرنا";
 
-            // رسالة حب من عندي (مناسب)
-            const MESSAGE = "ميرنا حبيبتي، من أول يوم وأنت نورت حياتي. كل ثانية بجانبك بتخليني أؤمن إن فيه حاجات جميلة في الدنيا. مش مجرد علاقة جديدة، دي بداية شيء كبير حقيقي. بحبك. ❤️";
+            // رسالة حب من عندي (بصياغة جميلة)
+            const LOVE_MESSAGE = `حبيبتي ميرنا،
+            
+من أول يوم قابلتك فيه، حسيت إن الدنيا لونها بقى أحلى. مش مجرد بداية علاقة جديدة، دي بداية شيء كبير حقيقي. كل لحظة بفكر فيك، بتبسط بشكل مش طبيعي.
+            
+بحبك. ❤️
 
-            // العناصر
-            const passwordScreen = document.getElementById('passwordScreen');
-            const mainContent = document.getElementById('mainContent');
+- الشخص اللي بيحبك`;
+
+
+            // ------------------ العناصر ------------------
+            const lockScreen = document.getElementById('lockScreen');
+            const mainScreen = document.getElementById('mainScreen');
+            const passwordInput = document.getElementById('passwordInput');
             const unlockBtn = document.getElementById('unlockBtn');
             const backBtn = document.getElementById('backBtn');
-            const passwordInput = document.getElementById('passwordInput');
-            const timerDisplay = document.getElementById('timerDisplay');
             const loveMessage = document.getElementById('loveMessage');
+            const timerGrid = document.getElementById('timerGrid');
 
-            // كتابة الرسالة
-            loveMessage.textContent = MESSAGE;
+            // حط الرسالة
+            loveMessage.innerHTML = `<p>${LOVE_MESSAGE.replace(/\n/g, '<br>')}</p>`;
 
-            // حساب الوقت بدقة
-            function getTimeDifference(start, end) {
-                if (end < start) return { years:0, days:0, hours:0, minutes:0, seconds:0 };
-                let current = new Date(start);
+            // ------------------ دالة حساب الوقت (دقيقة جداً) ------------------
+            function getTimeDifference(start) {
+                const now = new Date();
+                let diff = now - start;
+                if (diff < 0) return { years: 0, days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+                // حساب السنوات بدقة
                 let years = 0;
+                let tempDate = new Date(start);
                 while (true) {
-                    let next = new Date(current);
-                    next.setFullYear(current.getFullYear() + 1);
-                    if (next <= end) { years++; current = next; }
-                    else break;
+                    let nextYear = new Date(tempDate);
+                    nextYear.setFullYear(tempDate.getFullYear() + 1);
+                    if (nextYear <= now) {
+                        years++;
+                        tempDate = nextYear;
+                    } else break;
                 }
+
+                // حساب الأيام
                 let days = 0;
                 while (true) {
-                    let next = new Date(current);
-                    next.setDate(current.getDate() + 1);
-                    if (next <= end) { days++; current = next; }
-                    else break;
+                    let nextDay = new Date(tempDate);
+                    nextDay.setDate(tempDate.getDate() + 1);
+                    if (nextDay <= now) {
+                        days++;
+                        tempDate = nextDay;
+                    } else break;
                 }
-                let diffMs = end - current;
-                let totalSec = Math.floor(diffMs / 1000);
-                let hours = Math.floor(totalSec / 3600);
-                let minutes = Math.floor((totalSec % 3600) / 60);
-                let seconds = totalSec % 60;
+
+                // حساب الساعات والدقائق والثواني
+                let remainingMs = now - tempDate;
+                let totalSeconds = Math.floor(remainingMs / 1000);
+                let hours = Math.floor(totalSeconds / 3600);
+                let minutes = Math.floor((totalSeconds % 3600) / 60);
+                let seconds = totalSeconds % 60;
+
                 return { years, days, hours, minutes, seconds };
             }
 
+            // ------------------ تحديث العداد ------------------
             function updateTimer() {
-                const now = new Date();
-                const diff = getTimeDifference(START_DATE, now);
-                const f = (n) => n.toString().padStart(2, '0');
-                timerDisplay.innerHTML = `
-                    <div class="unit"><span class="value">${diff.years}</span><span class="label"> سنة</span></div>
-                    <div class="unit"><span class="value">${f(diff.days)}</span><span class="label"> يوم</span></div>
-                    <div class="unit"><span class="value">${f(diff.hours)}</span><span class="label"> ساعة</span></div>
-                    <div class="unit"><span class="value">${f(diff.minutes)}</span><span class="label"> دقيقة</span></div>
-                    <div class="unit"><span class="value">${f(diff.seconds)}</span><span class="label"> ثانية</span></div>
+                const t = getTimeDifference(START_DATE);
+                const format = (n) => n.toString().padStart(2, '0');
+                timerGrid.innerHTML = `
+                    <div class="time-unit" style="animation-delay: 0s">
+                        <div class="number">${t.years}</div>
+                        <div class="label">سنة</div>
+                    </div>
+                    <div class="time-unit" style="animation-delay: 0.1s">
+                        <div class="number">${format(t.days)}</div>
+                        <div class="label">يوم</div>
+                    </div>
+                    <div class="time-unit" style="animation-delay: 0.2s">
+                        <div class="number">${format(t.hours)}</div>
+                        <div class="label">ساعة</div>
+                    </div>
+                    <div class="time-unit" style="animation-delay: 0.3s">
+                        <div class="number">${format(t.minutes)}</div>
+                        <div class="label">دقيقة</div>
+                    </div>
+                    <div class="time-unit" style="animation-delay: 0.4s">
+                        <div class="number">${format(t.seconds)}</div>
+                        <div class="label">ثانية</div>
+                    </div>
                 `;
             }
 
-            function checkPassword() {
-                if (passwordInput.value.trim() === CORRECT_PASSWORD) {
-                    passwordScreen.classList.add('hidden');
-                    mainContent.classList.remove('hidden');
+            // ------------------ فتح المحتوى ------------------
+            function unlockContent() {
+                if (passwordInput.value.trim() === PASSWORD) {
+                    lockScreen.classList.add('hidden');
+                    mainScreen.classList.remove('hidden');
                     updateTimer();
-                    setInterval(updateTimer, 1000);
+                    if (window.timerInterval) clearInterval(window.timerInterval);
+                    window.timerInterval = setInterval(updateTimer, 1000);
                 } else {
-                    alert('كلمة المرور غلط، حاول تاني');
+                    alert('كلمة المرور مش صحيحة ياقلبي 😊');
                 }
             }
 
-            // زر الرجوع
-            backBtn.addEventListener('click', function() {
-                mainContent.classList.add('hidden');
-                passwordScreen.classList.remove('hidden');
-                passwordInput.value = ''; // تنظيف الحقل
+            // ------------------ الرجوع للقفل ------------------
+            function goBack() {
+                mainScreen.classList.add('hidden');
+                lockScreen.classList.remove('hidden');
+                passwordInput.value = '';
+                if (window.timerInterval) {
+                    clearInterval(window.timerInterval);
+                    window.timerInterval = null;
+                }
+            }
+
+            // ------------------ الأحداث ------------------
+            unlockBtn.addEventListener('click', unlockContent);
+            backBtn.addEventListener('click', goBack);
+            passwordInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') unlockContent();
             });
 
-            unlockBtn.addEventListener('click', checkPassword);
-            passwordInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') checkPassword();
+            // تنظيف
+            window.addEventListener('beforeunload', () => {
+                if (window.timerInterval) clearInterval(window.timerInterval);
             });
         })();
     </script>
